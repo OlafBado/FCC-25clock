@@ -20,7 +20,8 @@ interface StateProps {
         seconds: string,
         breakNum: number,
         session: number,
-        isCounting: boolean
+        isCounting: boolean,
+        state: string
   }
 }
 
@@ -35,23 +36,27 @@ function App() {
       <section>
         <div>
           <p id='break-label'>Break Length</p>
-          <span id='break-decrement'>
-            <FontAwesomeIcon icon={faArrowDown} onClick={() => dispatch(decrementBreak())}/>
-          </span>
-          <span id='break-length'>{breakNum}</span>
-          <span id='break-increment'>
-            <FontAwesomeIcon icon={faArrowUp} onClick={() => dispatch(incrementBreak())}/>
-          </span>
+          <div className='wrapper__upper-section'>
+            <button id='break-decrement'>
+              <FontAwesomeIcon icon={faArrowDown} onClick={() => dispatch(decrementBreak())}/>
+            </button>
+            <span id='break-length'>{breakNum}</span>
+            <button id='break-increment'>
+              <FontAwesomeIcon icon={faArrowUp} onClick={() => dispatch(incrementBreak())}/>
+            </button>
+          </div>
         </div>
         <div>
           <p id='session-label'>Session Length</p>
-          <span id='session-decrement'>
-            <FontAwesomeIcon icon={faArrowDown} onClick={() => dispatch(decrementSession())}/>
-          </span>
-          <span id='session-length'>{session}</span>
-          <span id='session-increment'>
-            <FontAwesomeIcon icon={faArrowUp} onClick={() => dispatch(incrementSession())}/>
-          </span>
+          <div className='wrapper__upper-section'>
+            <button id='session-decrement'>
+              <FontAwesomeIcon icon={faArrowDown} onClick={() => dispatch(decrementSession())}/>
+            </button>
+            <span id='session-length'>{session}</span>
+            <button id='session-increment'>
+              <FontAwesomeIcon icon={faArrowUp} onClick={() => dispatch(incrementSession())}/>
+            </button>
+          </div>
         </div>
       </section>
       <Timer />
@@ -71,14 +76,14 @@ function App() {
 
 const Timer = () => {
 
-  const { minutes, seconds, isCounting } = useSelector((state: StateProps) => state.timer)
+  const { state, minutes, seconds, isCounting } = useSelector((state: StateProps) => state.timer)
   const dispatch = useDispatch()
   
-  if (isCounting) setTimeout(() => dispatch(decrementSeconds()), 1000)
+  if (isCounting) setTimeout(() => dispatch(decrementSeconds()), 500)
   
   return (
   <section>
-        <h3 id='timer-label'>Session</h3>
+        <h3 id='timer-label'>{state}</h3>
         <h1 id='time-left'>{minutes}:{seconds}</h1>
     </section>
 )

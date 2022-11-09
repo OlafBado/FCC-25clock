@@ -22,11 +22,13 @@ let timerId: any = null;
 const timerSlice = createSlice({
     name: 'timer',
     initialState: {
-        minutes: '25',
+        minutes: '1',
         seconds: '00',
         breakNum: '5',
-        session: '25',
-        isCounting: false
+        session: '1',
+        isCounting: false,
+        isBreak: false,
+        state: 'Session'
     },
     reducers: {
         incrementMinutes: (state) => {
@@ -40,6 +42,20 @@ const timerSlice = createSlice({
         },
         decrementSeconds: (state) => {
             if (!state.isCounting) return
+
+            if (state.minutes === '00' && state.seconds === '00' && state.isBreak) {
+                state.isBreak = false
+                state.state = 'Session'
+                state.minutes = state.session
+                state.seconds = '00'
+            }
+
+            if (state.minutes === '00' && state.seconds === '00' && !state.isBreak) {
+                state.isBreak = true
+                state.state = 'Break'
+                state.minutes = state.breakNum
+                state.seconds = '00'
+            }
 
             if (state.minutes === '1' && state.seconds === '00') {
                 state.minutes = '00'

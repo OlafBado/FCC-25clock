@@ -1,4 +1,73 @@
 body {
     background-color: #1e555c ;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.wrapper {
+    min-width: 300px;
+}
+
+section:first-of-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+section:first-of-type p {
+    font-size: 1.5rem;
+}
+
+section:first-of-type span {
+    font-size: 1.5rem;
+}
+
+.wrapper__upper-section {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+section:nth-of-type(2) {
+    width: 80%;
+    border: 7px solid #13353a;
+    border-radius: 2rem;
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section:nth-of-type(2) > h3 {
+    font-size: 2rem;
+    margin: 1rem 0 0 0
+}
+
+section:nth-of-type(2) > h1 {
+    font-size: 4rem;
+    margin: 0.5rem 0;
+}
+
+section:nth-of-type(3) {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+section:nth-of-type(3) > button,
+section:first-of-type div div button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
 }
