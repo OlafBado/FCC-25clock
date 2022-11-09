@@ -69,7 +69,7 @@ function App() {
           <FontAwesomeIcon icon={faRepeat} />
         </button>
       </section>
-      <audio id='beep'></audio>
+      <audio src='https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3' id='beep'></audio>
     </div>
   )
 }

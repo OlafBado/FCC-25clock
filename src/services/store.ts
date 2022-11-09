@@ -22,10 +22,10 @@ let timerId: any = null;
 const timerSlice = createSlice({
     name: 'timer',
     initialState: {
-        minutes: '1',
+        minutes: '25',
         seconds: '00',
         breakNum: '5',
-        session: '1',
+        session: '25',
         isCounting: false,
         isBreak: false,
         state: 'Session'
