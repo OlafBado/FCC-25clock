@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -69,7 +69,6 @@ function App() {
           <FontAwesomeIcon icon={faRepeat} />
         </button>
       </section>
-      <audio src='https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3' id='beep'></audio>
     </div>
   )
 }
@@ -78,11 +77,23 @@ const Timer = () => {
 
   const { state, minutes, seconds, isCounting } = useSelector((state: StateProps) => state.timer)
   const dispatch = useDispatch()
-  
+  const audioRef = useRef<HTMLAudioElement>(null)
+
   if (isCounting) setTimeout(() => dispatch(decrementSeconds()), 500)
   
+  const playSound = () => {
+    audioRef.current!.loop = true
+    audioRef.current!.play()
+    setTimeout(() => audioRef.current!.pause(), 3000)
+  }
+
+  if (seconds === '00' && minutes === '00') {
+    playSound()
+  }
+
   return (
   <section>
+        <audio ref={audioRef} src='https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3' id='beep'></audio>
         <h3 id='timer-label'>{state}</h3>
         <h1 id='time-left'>{minutes}:{seconds}</h1>
     </section>
