@@ -79,7 +79,7 @@ const Timer = () => {
   const dispatch = useDispatch()
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  if (isCounting) setTimeout(() => dispatch(decrementSeconds()), 500)
+  if (isCounting) setTimeout(() => dispatch(decrementSeconds()), 1000)
   
   const playSound = () => {
     audioRef.current!.loop = true
